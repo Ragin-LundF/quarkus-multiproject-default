@@ -1,0 +1,7 @@
+src/main/kotlin/com/Application.kt
+src/main/resources/
+build.gradle.kts
+pom.xml
+README.md
+settings.gradle
+**/application.yaml

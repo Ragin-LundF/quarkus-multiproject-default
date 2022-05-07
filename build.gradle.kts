@@ -1,3 +1,17 @@
+buildscript {
+    val kotlinVersion = "1.6.20"
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+        classpath("org.openapitools:openapi-generator-gradle-plugin:5.4.0")
+        classpath("org.jmailen.gradle:kotlinter-gradle:3.10.0")
+        classpath("org.jetbrains.dokka:dokka-gradle-plugin:${kotlinVersion}")
+    }
+}
+
 plugins {
     kotlin("jvm") version "1.6.10"
     kotlin("plugin.allopen") version "1.6.10"
