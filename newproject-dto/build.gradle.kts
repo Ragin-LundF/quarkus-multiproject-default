@@ -17,7 +17,6 @@ plugins {
 
 val ktorVersion = "2.0.1"
 dependencies {
-    implementation(project(":newproject-dto"))
     implementation("io.quarkus:quarkus-resteasy")
     implementation("io.quarkus:quarkus-resteasy-jackson")
 }
@@ -31,12 +30,12 @@ val apis = listOf(
     )
 )
 
-task("createAllRestApis") {
+task("createAllRestDtos") {
     group = groupName
 }
 
 fun createOpenApiRestTask(openapiFile: String, packageName: String): GenerateTask {
-    return tasks.create<GenerateTask>("create-${packageName}-api") {
+    return tasks.create<GenerateTask>("create-${packageName}-dto") {
         group = groupName
         generatorName.set("jaxrs-spec")
         inputSpec.set("${rootDir}/newproject-rest-api/src/main/resources/${openapiFile}")
@@ -45,7 +44,7 @@ fun createOpenApiRestTask(openapiFile: String, packageName: String): GenerateTas
         modelPackage.set("${baseApiPackage}.dto.restgen.${packageName}")
         invokerPackage.set("com")
         globalProperties.set(mapOf(
-            "apis" to "",
+            "models" to "",
             "apiDocs" to "false",
             "apiTests" to "false",
             "modelTests" to "false",
@@ -53,21 +52,14 @@ fun createOpenApiRestTask(openapiFile: String, packageName: String): GenerateTas
 
         ))
         configOptions.set(mapOf(
-            "interfaceOnly" to "true",
             "dateLibrary" to "java8",
             "useSwaggerAnnotations" to "false"
         ))
-        //doFirst {
-        //    copy {
-        //        from(".openapi-generator-ignore")
-        //        into("${packageName}/")
-        //    }
-        //}
     }
 }
 
 fun createOpenApiRestCleanTask(packageName: String): Delete {
-    return tasks.create<Delete>("clean-${packageName}-client") {
+    return tasks.create<Delete>("clean-${packageName}-dto") {
         group = groupName
         delete("${projectDir}/src/main/java/")
         delete("${projectDir}/src/gen/")
@@ -85,7 +77,7 @@ apis.forEach { apiDefinition ->
     tasks.clean {
         dependsOn(cleanTask)
     }
-    tasks.named("createAllRestApis") {
+    tasks.named("createAllRestDtos") {
         dependsOn(createTask)
     }
     createTask.dependsOn(cleanTask)

@@ -11,5 +11,6 @@ pluginManagement {
 }
 rootProject.name = "newproject"
 
+include("newproject-dto")
 include("newproject-rest-api")
 include("newproject-server")

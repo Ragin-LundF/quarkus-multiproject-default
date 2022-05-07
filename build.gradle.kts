@@ -66,6 +66,7 @@ subprojects {
 // -------- Java/Kotlin configuration
 subprojects {
     sourceSets.getByName("main") {
+        java.srcDir("src/gen/java")
         java.srcDir("src/main/java")
         java.srcDir("src/main/kotlin")
     }
