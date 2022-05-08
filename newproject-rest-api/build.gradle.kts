@@ -18,6 +18,7 @@ plugins {
 val ktorVersion = "2.0.1"
 dependencies {
     implementation(project(":newproject-dto"))
+    implementation(project(":newproject-domain-services"))
     implementation("io.quarkus:quarkus-resteasy")
     implementation("io.quarkus:quarkus-resteasy-jackson")
 }

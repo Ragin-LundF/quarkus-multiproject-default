@@ -11,6 +11,8 @@ pluginManagement {
 }
 rootProject.name = "newproject"
 
+include("newproject-domain-models")
+include("newproject-domain-services")
 include("newproject-dto")
 include("newproject-rest-api")
 include("newproject-server")
