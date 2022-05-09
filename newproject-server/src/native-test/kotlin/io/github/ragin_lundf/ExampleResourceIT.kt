@@ -1,4 +1,4 @@
-package io.github.ragin
+package io.github.ragin_lundf
 
 import io.quarkus.test.junit.QuarkusIntegrationTest
 
