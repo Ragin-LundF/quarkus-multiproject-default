@@ -78,5 +78,5 @@ apis.forEach { apiDefinition ->
     }
     createTask.finalizedBy(ktFormatDtoTask)
     createTask.dependsOn(cleanTask)
-    tasks.named("assemble").get().dependsOn(createTask)
+    tasks.named("compileKotlin").get().dependsOn(createTask)
 }
