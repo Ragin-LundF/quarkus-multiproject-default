@@ -43,13 +43,6 @@ subprojects {
     dependencyManagement {
         dependencies {
             dependency("com.google.code.gson:gson:2.9.0")
-            dependency("com.typesafe:config:1.4.1")
-            dependency("io.ktor:ktor-auth:1.6.8")
-            dependency("io.ktor:ktor-client-apache:1.6.8")
-            dependency("io.ktor:ktor-gson:1.6.8")
-            dependency("io.ktor:ktor-locations:1.6.8")
-            dependency("io.ktor:ktor-metrics:1.6.8")
-            dependency("io.ktor:ktor-server-netty:1.6.8")
         }
     }
 
@@ -57,8 +50,6 @@ subprojects {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
         implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
-        implementation("io.quarkus:quarkus-hibernate-reactive")
-        implementation("io.quarkus:quarkus-scheduler")
         implementation("io.quarkus:quarkus-logging-json")
         implementation("io.quarkus:quarkus-hibernate-validator")
         implementation("io.quarkus:quarkus-jacoco")

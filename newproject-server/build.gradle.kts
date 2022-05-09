@@ -9,4 +9,5 @@ dependencies {
     implementation("io.quarkus:quarkus-opentelemetry")
 
     implementation(project(":newproject-rest-api"))
+    implementation(project(":newproject-domain-services"))
 }

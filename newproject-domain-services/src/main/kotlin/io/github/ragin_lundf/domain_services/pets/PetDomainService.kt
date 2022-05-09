@@ -5,14 +5,11 @@ import javax.enterprise.context.ApplicationScoped
 
 @ApplicationScoped
 class PetDomainService {
-    fun getPetById(petId: Long): PetDto {
+    fun getPetById(petId: String): PetDto {
         return PetDto(
             name = "Jacky",
-            photoUrls = emptyList(),
-            id = petId,
-            category = null,
-            tags = null,
-            status = PetDto.Status.available
+            id = 1,
+            tag = petId
         )
     }
 }

@@ -78,9 +78,3 @@ Configure your application with YAML
 [Related guide section...](https://quarkus.io/guides/config-reference#configuration-examples)
 
 The Quarkus application configuration is located in `src/main/resources/application.yml`.
-
-### RESTEasy Reactive
-
-Easily start your Reactive RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
