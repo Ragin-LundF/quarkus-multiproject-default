@@ -1,3 +1,2 @@
 .openapi-generator
-src/main/webapp
-src/gen
+gen

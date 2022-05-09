@@ -1,21 +1,20 @@
 buildscript {
-    val kotlinVersion = "1.6.20"
-
     repositories {
         mavenCentral()
     }
     dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
-        classpath("org.openapitools:openapi-generator-gradle-plugin:5.4.0")
         classpath("org.jmailen.gradle:kotlinter-gradle:3.10.0")
-        classpath("org.jetbrains.dokka:dokka-gradle-plugin:${kotlinVersion}")
+        classpath("org.openapitools:openapi-generator-gradle-plugin:5.4.0")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.20")
+        classpath("org.jetbrains.dokka:dokka-gradle-plugin:1.6.20")
     }
 }
 
 plugins {
-    kotlin("jvm") version "1.6.10"
-    kotlin("plugin.allopen") version "1.6.10"
+    kotlin("jvm") version "1.6.20"
+    kotlin("plugin.allopen") version "1.6.20"
     id("java-library")
+    id("io.spring.dependency-management") version "1.0.11.RELEASE"
 }
 
 allprojects {
@@ -25,19 +24,32 @@ allprojects {
 
     group = "io.github.ragin"
     version = "1.0-SNAPSHOT"
-
 }
 
 subprojects {
     apply(plugin = "idea")
     apply(plugin = "java-library")
     apply(plugin = "kotlin")
-    apply(plugin = "kotlin-allopen")
     apply(plugin = "kotlin-kapt")
+    apply(plugin = "kotlin-allopen")
+    apply(plugin = "io.spring.dependency-management")
 
     val quarkusPlatformGroupId: String by project
     val quarkusPlatformArtifactId: String by project
     val quarkusPlatformVersion: String by project
+
+    dependencyManagement {
+        dependencies {
+            dependency("com.google.code.gson:gson:2.9.0")
+            dependency("com.typesafe:config:1.4.1")
+            dependency("io.ktor:ktor-auth:1.6.8")
+            dependency("io.ktor:ktor-client-apache:1.6.8")
+            dependency("io.ktor:ktor-gson:1.6.8")
+            dependency("io.ktor:ktor-locations:1.6.8")
+            dependency("io.ktor:ktor-metrics:1.6.8")
+            dependency("io.ktor:ktor-server-netty:1.6.8")
+        }
+    }
 
     dependencies {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -66,9 +78,9 @@ subprojects {
 // -------- Java/Kotlin configuration
 subprojects {
     sourceSets.getByName("main") {
-        java.srcDir("src/gen/java")
         java.srcDir("src/main/java")
         java.srcDir("src/main/kotlin")
+        java.srcDir("gen/src/main/kotlin")
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -82,3 +94,6 @@ subprojects {
     }
 }
 
+tasks.wrapper {
+    gradleVersion = "7.4.2"
+}

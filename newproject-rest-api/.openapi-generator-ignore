@@ -1,7 +1,8 @@
 src/main/resources/
 src/main/webapp/
-src/main/openapi/
 build.gradle
 pom.xml
 README.md
 settings.gradle
+Dockerfile
+gradle.properties

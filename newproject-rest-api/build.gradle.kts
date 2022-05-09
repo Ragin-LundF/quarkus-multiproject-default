@@ -1,24 +1,13 @@
-import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
-
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.openapitools:openapi-generator-gradle-plugin:5.4.0")
-    }
-}
-
 apply(plugin = "org.openapi.generator")
 
 plugins {
     id("io.quarkus")
 }
 
-val ktorVersion = "2.0.1"
 dependencies {
     implementation(project(":newproject-dto"))
     implementation(project(":newproject-domain-services"))
+
     implementation("io.quarkus:quarkus-resteasy")
     implementation("io.quarkus:quarkus-resteasy-jackson")
 }
@@ -32,21 +21,24 @@ val apis = listOf(
     )
 )
 
-task("createAllRestApis") {
+task("all-rest-api") {
     group = groupName
 }
 
-fun createOpenApiRestTask(openapiFile: String, packageName: String): GenerateTask {
-    return tasks.create<GenerateTask>("create-${packageName}-api") {
+fun createOpenApiRestTask(openapiFile: String, packagePath: String): org.openapitools.generator.gradle.plugin.tasks.GenerateTask {
+    return tasks.create<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("create-${packagePath}-api") {
         group = groupName
-        generatorName.set("jaxrs-spec")
+        generatorName.set("kotlin-server")
         inputSpec.set("${rootDir}/newproject-rest-api/src/main/resources/${openapiFile}")
-        outputDir.set("${projectDir}")
-        apiPackage.set("${baseApiPackage}.restapi.restgen.${packageName}")
-        modelPackage.set("${baseApiPackage}.dto.restgen.${packageName}")
+        outputDir.set("${projectDir}/gen")
+        apiPackage.set("${baseApiPackage}.${packagePath}")
+        modelPackage.set("${baseApiPackage}.dto.${packagePath}.models")
+        packageName.set("${baseApiPackage}.${packagePath}")
         invokerPackage.set("com")
+        modelNameSuffix.set("Dto")
         globalProperties.set(mapOf(
             "apis" to "",
+            "supportingFiles" to "",
             "apiDocs" to "false",
             "apiTests" to "false",
             "modelTests" to "false",
@@ -56,22 +48,22 @@ fun createOpenApiRestTask(openapiFile: String, packageName: String): GenerateTas
         configOptions.set(mapOf(
             "interfaceOnly" to "true",
             "dateLibrary" to "java8",
-            "useSwaggerAnnotations" to "false"
+            "useSwaggerAnnotations" to "false",
+            "library" to "jaxrs-spec"
         ))
-        //doFirst {
-        //    copy {
-        //        from(".openapi-generator-ignore")
-        //        into("${packageName}/")
-        //    }
-        //}
+        doFirst {
+            copy {
+                from(".openapi-generator-ignore")
+                into("gen/")
+            }
+        }
     }
 }
 
 fun createOpenApiRestCleanTask(packageName: String): Delete {
     return tasks.create<Delete>("clean-${packageName}-client") {
         group = groupName
-        delete("${projectDir}/src/main/java/")
-        delete("${projectDir}/src/gen/")
+        delete("${projectDir}/gen/")
     }
 }
 
@@ -86,8 +78,16 @@ apis.forEach { apiDefinition ->
     tasks.clean {
         dependsOn(cleanTask)
     }
-    tasks.named("createAllRestApis") {
+    tasks.named("all-rest-api") {
         dependsOn(createTask)
     }
+    val ktFormatApiTask = tasks.create<org.jmailen.gradle.kotlinter.tasks.FormatTask>(
+        "format-${apiDefinition["packageName"]!!.capitalize()}-api"
+    ) {
+        group = groupName
+        source(files("gen/"))
+    }
+    createTask.finalizedBy(ktFormatApiTask)
     createTask.dependsOn(cleanTask)
+    tasks.named("assemble").get().dependsOn(createTask)
 }
