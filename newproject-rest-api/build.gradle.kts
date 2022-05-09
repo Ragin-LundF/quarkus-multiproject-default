@@ -12,6 +12,7 @@ dependencies {
     implementation("io.quarkus:quarkus-resteasy-jackson")
 }
 
+// ---- API Generator task creation
 val groupName = "openapi generator"
 val baseApiPackage = "io.github.ragin_lundf.newproject"
 val apis = listOf(
