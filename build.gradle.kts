@@ -14,6 +14,7 @@ plugins {
     kotlin("jvm") version "1.6.20"
     kotlin("plugin.allopen") version "1.6.20"
     id("java-library")
+    id("org.kordamp.gradle.jandex") version "0.12.0"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
 }
 
@@ -32,6 +33,7 @@ subprojects {
     apply(plugin = "kotlin")
     apply(plugin = "kotlin-kapt")
     apply(plugin = "kotlin-allopen")
+    apply(plugin = "org.kordamp.gradle.jandex")
     apply(plugin = "io.spring.dependency-management")
 
     val quarkusPlatformGroupId: String by project
