@@ -43,6 +43,7 @@ subprojects {
     dependencyManagement {
         dependencies {
             dependency("com.google.code.gson:gson:2.9.0")
+            dependency("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.+")
         }
     }
 
@@ -57,6 +58,7 @@ subprojects {
         implementation("io.quarkus:quarkus-jackson")
         implementation("io.quarkus:quarkus-liquibase")
         implementation("io.quarkus:quarkus-arc")
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         testImplementation("io.quarkus:quarkus-junit5")
         testImplementation("io.rest-assured:rest-assured")
     }
