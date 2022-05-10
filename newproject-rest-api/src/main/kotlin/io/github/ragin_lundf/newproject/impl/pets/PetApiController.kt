@@ -6,13 +6,13 @@ import io.github.ragin_lundf.newproject.pets.PetsApi
 import javax.enterprise.context.ApplicationScoped
 
 @ApplicationScoped
-class PetApiController(private val petDomainService: PetDomainService): PetsApi {
+class PetApiController(private val petDomainService: PetDomainService) : PetsApi {
     override fun createPets() {
-        TODO("Not yet implemented")
+        petDomainService.createPets()
     }
 
     override fun listPets(limit: Int?): List<PetDto> {
-        TODO("Not yet implemented")
+        return petDomainService.listPets()
     }
 
     override fun showPetById(petId: String): PetDto {

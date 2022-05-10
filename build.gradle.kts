@@ -5,14 +5,14 @@ buildscript {
     dependencies {
         classpath("org.jmailen.gradle:kotlinter-gradle:3.10.0")
         classpath("org.openapitools:openapi-generator-gradle-plugin:5.4.0")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.20")
-        classpath("org.jetbrains.dokka:dokka-gradle-plugin:1.6.20")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21")
+        classpath("org.jetbrains.dokka:dokka-gradle-plugin:1.6.21")
     }
 }
 
 plugins {
-    kotlin("jvm") version "1.6.20"
-    kotlin("plugin.allopen") version "1.6.20"
+    kotlin("jvm") version "1.6.21"
+    kotlin("plugin.allopen") version "1.6.21"
     id("java-library")
     id("org.kordamp.gradle.jandex") version "0.12.0"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
