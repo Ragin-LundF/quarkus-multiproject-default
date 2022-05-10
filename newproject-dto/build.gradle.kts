@@ -5,7 +5,6 @@ plugins {
 }
 
 dependencies {
-    implementation("io.quarkus:quarkus-resteasy")
     implementation("io.quarkus:quarkus-resteasy-jackson")
 }
 

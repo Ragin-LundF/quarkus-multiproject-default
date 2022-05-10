@@ -6,7 +6,7 @@ import io.github.ragin_lundf.newproject.pets.PetsApi
 import javax.enterprise.context.ApplicationScoped
 
 @ApplicationScoped
-class PetApiController(private val petDomainService: PetDomainService) : PetsApi {
+class PetApiController(private val petDomainService: PetDomainService): PetsApi {
     override fun createPets() {
         petDomainService.createPets()
     }
