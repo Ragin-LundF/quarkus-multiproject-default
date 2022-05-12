@@ -44,6 +44,12 @@ subprojects {
         dependencies {
             dependency("com.google.code.gson:gson:2.9.0")
             dependency("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.+")
+
+            dependency("org.postgresql:postgresql:42.3.4")
+
+            dependency("org.testcontainers:testcontainers:1.17.1")
+            dependency("org.testcontainers:junit-jupiter:1.17.1")
+            dependency("org.testcontainers:postgresql:1.17.1")
         }
     }
 

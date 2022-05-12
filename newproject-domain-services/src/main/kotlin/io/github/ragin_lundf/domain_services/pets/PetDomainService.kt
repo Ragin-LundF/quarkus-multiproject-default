@@ -1,34 +1,47 @@
 package io.github.ragin_lundf.domain_services.pets
 
+import io.github.ragin_lundf.domain_models.pets.PetModel
 import io.github.ragin_lundf.newproject.dto.pets.models.PetDto
+import io.github.ragin_lundf.repository.api.PetRepository
 import javax.enterprise.context.ApplicationScoped
 
 @ApplicationScoped
-class PetDomainService {
+class PetDomainService(
+    private val petRepository: PetRepository
+) {
     fun createPets() {
         for (i in 0..10) {
-            pets[i.toString()] = PetDto(
-                name = "Jacky $i",
-                id = i.toLong(),
-                tag = "JCK_$i"
-            )
+            val petModel = PetModel()
+            petModel.name = "Jacky $i"
+            petRepository.save(petModel)
         }
     }
 
     @Suppress("UNCHECKED_CAST")
     fun listPets(): List<PetDto> {
-        return pets.values as List<PetDto>
+        val result = ArrayList<PetDto>()
+        petRepository.findAll().forEach { petModel ->
+            run {
+                result.add(
+                    PetDto(
+                        name = petModel.name!!,
+                        id = petModel.id!!
+                    )
+                )
+            }
+        }
+
+        return result
     }
 
     fun getPetById(petId: String): PetDto {
-        return PetDto(
-            name = "Jacky",
-            id = 1,
-            tag = petId
-        )
-    }
-
-    companion object {
-        private val pets = HashMap<String, PetDto>()
+        val petModelOptional = petRepository.findById(petId.toLong())
+        if (petModelOptional.isPresent) {
+            return PetDto(
+                name = petModelOptional.get().name!!,
+                id = petModelOptional.get().id!!
+            )
+        }
+        throw RuntimeException("Not found")
     }
 }

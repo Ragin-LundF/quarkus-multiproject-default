@@ -3,4 +3,5 @@ plugins {
 }
 
 dependencies {
+    implementation("io.quarkus:quarkus-hibernate-orm")
 }

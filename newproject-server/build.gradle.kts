@@ -8,6 +8,11 @@ dependencies {
     implementation("io.quarkus:quarkus-micrometer-registry-prometheus")
     implementation("io.quarkus:quarkus-opentelemetry")
 
+    implementation("org.postgresql:postgresql")
+
     implementation(project(":newproject-rest-api"))
     implementation(project(":newproject-domain-services"))
+
+    testImplementation("org.testcontainers:postgresql")
+    testImplementation("org.testcontainers:junit-jupiter")
 }

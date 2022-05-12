@@ -4,8 +4,7 @@ plugins {
 
 dependencies {
     implementation(project(":newproject-domain-models"))
-    implementation(project(":newproject-dto"))
     implementation(project(":newproject-repository-api"))
 
-    implementation("io.quarkus:quarkus-scheduler")
+    implementation("io.quarkus:quarkus-spring-data-jpa")
 }

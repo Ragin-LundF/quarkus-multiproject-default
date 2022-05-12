@@ -2,3 +2,15 @@ quarkus:
   log:
     console:
       json: false
+  datasource:
+    db-kind: postgresql
+    username: newproject
+    password: newproject
+    jdbc:
+      url: postgresql:///newproject
+      max-size: 20
+
+  # temporary until liquibase is ready
+  hibernate-orm:
+    database:
+      generation: drop-and-create

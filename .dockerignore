@@ -1,5 +1,5 @@
 *
-!build/*-runner
-!build/*-runner.jar
-!build/lib/*
-!build/quarkus-app/*
+!newproject-server/build/*-runner
+!newproject-server/build/*-runner.jar
+!newproject-server/build/lib/*
+!newproject-server/build/quarkus-app/*

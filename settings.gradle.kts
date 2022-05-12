@@ -14,5 +14,7 @@ rootProject.name = "newproject"
 include("newproject-domain-models")
 include("newproject-domain-services")
 include("newproject-dto")
+include("newproject-repository")
+include("newproject-repository-api")
 include("newproject-rest-api")
 include("newproject-server")

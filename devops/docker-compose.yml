@@ -1,0 +1,17 @@
+version: '3'
+services:
+  newproject-postgres:
+    container_name: newproject-pg
+    image: postgres
+    restart: always
+    volumes:
+      - newproject_db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=newproject
+      - POSTGRES_USER=newproject
+      - POSTGRES_DB=newproject
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+volumes:
+  newproject_db: {}
