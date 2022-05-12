@@ -1,11 +1,11 @@
 apply(plugin = "org.openapi.generator")
 
 plugins {
-    id("io.quarkus")
+    id("io.quarkus") apply(false)
 }
 
 dependencies {
-    implementation("io.quarkus:quarkus-resteasy-jackson")
+    implementation("io.quarkus:quarkus-resteasy-reactive-jackson")
 }
 
 // ---- API Generator task creation
