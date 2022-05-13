@@ -1,0 +1,9 @@
+quarkus:
+  log:
+    console:
+      json: false
+
+  # temporary until liquibase is ready
+  hibernate-orm:
+    database:
+      generation: drop-and-create

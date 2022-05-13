@@ -6,7 +6,6 @@ quarkus:
     db-kind: postgresql
     username: newproject
     password: newproject
-    reactive: false
     jdbc:
       url: jdbc:postgresql://localhost:5432/newproject
       max-size: 20

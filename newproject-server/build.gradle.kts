@@ -13,6 +13,9 @@ dependencies {
     implementation(project(":newproject-domain-services"))
     implementation(project(":newproject-repository"))
 
+    testImplementation(project(":newproject-dto"))
+
+    testImplementation("io.quarkus:quarkus-spring-di")
     testImplementation("org.testcontainers:postgresql")
     testImplementation("org.testcontainers:junit-jupiter")
 }
