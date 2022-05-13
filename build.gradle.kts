@@ -47,9 +47,9 @@ subprojects {
 
             dependency("org.postgresql:postgresql:42.3.4")
 
-            dependency("org.testcontainers:testcontainers:1.17.3")
-            dependency("org.testcontainers:junit-jupiter:1.17.3")
-            dependency("org.testcontainers:postgresql:1.17.3")
+            dependency("org.testcontainers:testcontainers:1.17.1")
+            dependency("org.testcontainers:junit-jupiter:1.17.1")
+            dependency("org.testcontainers:postgresql:1.17.1")
         }
     }
 
