@@ -4,5 +4,4 @@ plugins {
 
 dependencies {
     implementation(project(":newproject-domain-models"))
-    implementation(project(":newproject-repository"))
 }

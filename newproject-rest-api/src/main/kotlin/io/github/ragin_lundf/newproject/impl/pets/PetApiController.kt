@@ -7,8 +7,8 @@ import javax.enterprise.context.ApplicationScoped
 
 @ApplicationScoped
 class PetApiController(private val petDomainService: PetDomainService): PetsApi {
-    override fun createPets() {
-        petDomainService.createPets()
+    override fun createPets(pet: PetDto): PetDto {
+        return petDomainService.createPets(pet)
     }
 
     override fun listPets(limit: Int?): List<PetDto> {

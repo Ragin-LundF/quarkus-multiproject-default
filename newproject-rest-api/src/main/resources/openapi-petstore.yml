@@ -44,11 +44,29 @@ paths:
       operationId: createPets
       tags:
         - pets
+      requestBody:
+        description: |
+          Object to store a pet
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
       responses:
         '201':
-          description: Null response
-        default:
-          description: unexpected error
+          description: Stored Pet
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pet"
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '500':
+          description: Internal server error
           content:
             application/json:
               schema:
@@ -91,8 +109,6 @@ components:
           type: integer
           format: int64
         name:
-          type: string
-        tag:
           type: string
     Pets:
       type: array

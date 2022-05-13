@@ -1,0 +1,17 @@
+###
+POST http://localhost:8080/pets
+Content-Type: application/json
+
+{
+  "name": "Jacky"
+}
+
+###
+GET http://localhost:8080/pets
+
+###
+GET http://localhost:8080/pets/2
+Accept: application/json
+Content-Type: application/json
+
+

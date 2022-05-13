@@ -6,8 +6,9 @@ quarkus:
     db-kind: postgresql
     username: newproject
     password: newproject
+    reactive: false
     jdbc:
-      url: postgresql:///newproject
+      url: jdbc:postgresql://localhost:5432/newproject
       max-size: 20
 
   # temporary until liquibase is ready

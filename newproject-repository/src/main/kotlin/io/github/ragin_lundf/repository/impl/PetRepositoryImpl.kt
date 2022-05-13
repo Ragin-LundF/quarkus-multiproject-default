@@ -4,7 +4,9 @@ import io.github.ragin_lundf.domain_models.pets.PetModel
 import io.github.ragin_lundf.repository.api.PetRepository
 import io.github.ragin_lundf.repository.impl.crud.PetCrudRepository
 import java.util.Optional
+import javax.enterprise.context.ApplicationScoped
 
+@ApplicationScoped
 class PetRepositoryImpl(
     private val petCrudRepository: PetCrudRepository
 ): PetRepository {

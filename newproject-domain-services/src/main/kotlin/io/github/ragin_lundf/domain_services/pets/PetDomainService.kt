@@ -9,12 +9,14 @@ import javax.enterprise.context.ApplicationScoped
 class PetDomainService(
     private val petRepository: PetRepository
 ) {
-    fun createPets() {
-        for (i in 0..10) {
-            val petModel = PetModel()
-            petModel.name = "Jacky $i"
-            petRepository.save(petModel)
-        }
+    fun createPets(pet: PetDto): PetDto {
+        val petModel = PetModel()
+        petModel.name = "Jacky"
+        val storedPet = petRepository.save(petModel)
+        return PetDto(
+            id = storedPet.id!!,
+            name = storedPet.name!!
+        )
     }
 
     @Suppress("UNCHECKED_CAST")
